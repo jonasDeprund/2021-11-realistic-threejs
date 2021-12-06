@@ -29,7 +29,13 @@ const scene = new THREE.Scene();
 
 const updateAllMaterials = () => {
   scene.traverse((child) => {
-    console.log(child);
+    if (
+      child instanceof THREE.Mesh &&
+      child.material instanceof THREE.MeshStandardMaterial
+    ) {
+      child.material.envMap = environmentMap;
+      child.material.envMapIntensity = 3;
+    }
   });
 };
 
@@ -152,6 +158,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.physicallyCorrectLights = true;
+renderer.outputEncoding = THREE.sRGBEncoding;
 
 /**
  * Animate
