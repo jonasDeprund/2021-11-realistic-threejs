@@ -40,7 +40,7 @@ const updateAllMaterials = () => {
 };
 
 /**
- * Load Environnement Map
+ * Load Environnement Map please
  */
 
 const environmentMap = cubeTextureLoader.load([
